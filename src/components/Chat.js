@@ -63,7 +63,6 @@ export default function Chat({ match }) {
       setLoading(false);
     },
   });
-
   const [sendMessage] = useMutation(SEND_MESSAGE, {
     onCompleted(data) {
       console.log(data);
@@ -103,49 +102,66 @@ export default function Chat({ match }) {
               "MMM D, YYYY"
             );
             if (currDate !== prevDate) {
-              console.log(currDate, prevDate);
               dt = true;
             }
             prevDate = currDate;
-            if (dt) {
-              return (
-                <div
-                  style={{
-                    display: "flex",
-                    justifyContent: "center",
-                    color: "lavender",
-                  }}
-                  key={currDate}
-                >
-                  {currDate}
-                </div>
-              );
-            }
             if (message.sender === username) {
               return (
-                <MyMessage key={message.uuid}>
-                  <MyMsg>
-                    <p>
-                      {message.content}{" "}
-                      <span style={{ fontSize: 12 }}>
-                        {dayjs(message.createdat).format("h:mm A")}
-                      </span>
-                    </p>
-                  </MyMsg>
-                </MyMessage>
+                <div style={{ marginBottom: "2px" }}>
+                  {dt ? (
+                    <div
+                      style={{
+                        display: "flex",
+                        justifyContent: "center",
+                        color: "lavender",
+                      }}
+                      key={currDate}
+                    >
+                      {currDate}
+                    </div>
+                  ) : null}
+                  <MyMessage key={message.uuid}>
+                    <MyMsg>
+                      <p>
+                        {message.content}{" "}
+                        <span style={{ fontSize: 12 }}>
+                          {dayjs(new Date(parseInt(message.createdat))).format(
+                            "h:mm A"
+                          )}
+                        </span>
+                      </p>
+                    </MyMsg>
+                  </MyMessage>
+                </div>
               );
             } else {
               return (
-                <MyListItem key={message.uuid}>
-                  <MyMsg>
-                    <p>
-                      {message.content}{" "}
-                      <span style={{ fontSize: 12 }}>
-                        {dayjs(message.createdat).format("h:mm A")}
-                      </span>
-                    </p>
-                  </MyMsg>
-                </MyListItem>
+                <div style={{ marginBottom: "2px" }}>
+                  {dt ? (
+                    <div
+                      style={{
+                        display: "flex",
+                        justifyContent: "center",
+                        color: "lavender",
+                      }}
+                      key={currDate}
+                    >
+                      {currDate}
+                    </div>
+                  ) : null}
+                  <MyListItem key={message.uuid}>
+                    <MyMsg>
+                      <p>
+                        {message.content}{" "}
+                        <span style={{ fontSize: 12 }}>
+                          {dayjs(new Date(parseInt(message.createdat))).format(
+                            "h:mm A"
+                          )}
+                        </span>
+                      </p>
+                    </MyMsg>
+                  </MyListItem>
+                </div>
               );
             }
           })}

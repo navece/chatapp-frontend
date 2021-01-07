@@ -44,7 +44,6 @@ export const MyList = styled(List)`
   width: 100%;
   justify-content: flex-start;
   overflow-y: scroll;
-  flex-direction: column-reverse;
   height: 85vh;
 `;
 

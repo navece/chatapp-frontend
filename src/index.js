@@ -15,7 +15,7 @@ import { getMainDefinition } from "@apollo/client/utilities";
 import { WebSocketLink } from "@apollo/client/link/ws";
 
 let httpLink = createHttpLink({
-  uri: "https://black-chat-app.herokuapp.com/",
+  uri: "https://secret-scrubland-89281.herokuapp.com/",
 });
 
 const token = localStorage.getItem("token");
@@ -34,7 +34,7 @@ const authLink = setContext((_, { headers }) => {
 httpLink = authLink.concat(httpLink);
 
 const wsLink = new WebSocketLink({
-  uri: "wss://black-chat-app.herokuapp.com/subscriptions",
+  uri: "wss://secret-scrubland-89281.herokuapp.com/subscriptions",
   options: {
     reconnect: true,
     connectionParams: {
